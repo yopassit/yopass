@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-yopass
+  namespace: yopass
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: daniel@dermaico.com
+    privateKeySecretRef:
+      name: letsencrypt-yopass
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

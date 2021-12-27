@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yopass
+
+---
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: yopass-rq
+  namespace: yopass
+spec:
+  hard:
+    requests.cpu: 2G
+    requests.memory: 2Gi
+    limits.cpu: 2G
+    limits.memory: 2Gi

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: yopass
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  replicas: 1
+  serviceName: 'redis'
+  template:
+    metadata:
+      name: redis
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:6.2
+          resources:
+            requests:
+              cpu: 512m
+              memory: 1G
+            limits:
+              cpu: 512m
+              memory: 1G
+          ports:
+          - containerPort: 6379

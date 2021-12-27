@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yopass-deploy
+  namespace: yopass
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yopass
+  template:
+    metadata:
+      name: yopass-deploy
+      labels:
+        app: yopass
+    spec:
+      containers:
+        - name: yopass
+          image: jhaals/yopass
+          args:
+            - "--database=redis"
+            - "--redis=redis://redis:6379/0"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          ports:
+          - containerPort: 1337
